@@ -92,6 +92,7 @@ export default function ShowListComponent() {
             <th>Sr. no</th>
             <th>InstitutionName</th>
             <th>Degree</th>
+            <th>Percentage</th>
             <th>StartYear</th>
             <th>EndYear</th>
             <th>Update</th>
@@ -104,6 +105,7 @@ export default function ShowListComponent() {
               <td>{index + 1}</td>
               <td>{data.institutionName}</td>
               <td>{data.degree}</td>
+              <td>{data.percentage}</td>
               <td>{data.startYear}</td>
               <td>{data.endYear}</td>
               <td>

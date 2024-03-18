@@ -8,10 +8,10 @@ import {
   getPersonalInfoById,
 } from "../Services/PersonalInfoServices";
 import { JSX } from "react/jsx-runtime";
+import { validatePersonalInfo } from "../Validations/validatePersonalInfo";
 
 export default function PersonalInfoUtility(id: number) {
   const navigate = useNavigate();
-  
 
   const initialValue: PersonalModel = {
     firstName: "",
@@ -25,22 +25,8 @@ export default function PersonalInfoUtility(id: number) {
   };
 
 
-  // useEffect(() => {
-  //   async function getPersonalInfo() {
-  //     let response = await getPersonalInfoById(id);
-  //     alert(JSON.stringify(response));
 
-  //     if (response.data) {
-  //       setPersonalinfo(response.data);
-  //     }
-  //   }
-  //   if (id > 0) {
-  //     getPersonalInfoById(id);
-  //   }
-  // }, [id]);
-
-
-useEffect(() => {
+  useEffect(() => {
     async function fetchData() {
       try {
         if (id > 0) {
@@ -50,51 +36,51 @@ useEffect(() => {
           }
         }
       } catch (error) {
-        console.error('Error fetching personal information:', error);
+        console.error("Error fetching personal information:", error);
       }
     }
 
     fetchData();
 
     // return () => {
-      
+
     // };
   }, [id]);
 
   const [personalinfo, setPersonalinfo] = useState<PersonalModel>(initialValue);
 
   const handelSavePersonalInfo = async () => {
-    alert("heyyyy");
-
-    if (personalinfo.id !== 0) {
-      alert(personalinfo.id);
-      console.log(personalinfo.id + "update");
-      await UpdatePersonInfoAsync( personalinfo,personalinfo.id);
-      console.log("User data updated successfully.");
-    } else {
-      alert(personalinfo.id + "new");
-      await CreatePersonalInfo(personalinfo);
-      console.log("New user data created successfully.");
+    const validationErrors = validatePersonalInfo(personalinfo);
+    if (validationErrors.length === 0) {
+      if (personalinfo.id !== 0) {
+        alert(personalinfo.id);
+        console.log(personalinfo.id + "update");
+        await UpdatePersonInfoAsync(personalinfo, personalinfo.id);
+        console.log("User data updated successfully.");
+      } else {
+        alert(personalinfo.id + "new");
+        await CreatePersonalInfo(personalinfo);
+        console.log("New user data created successfully.");
+      }
+      setPersonalinfo(initialValue);
     }
-
-    setPersonalinfo(initialValue);
+    else{
+      alert("please provide valid credentials");
+    }
   };
 
   const handelShowList = () => {
     navigate("/showlist");
-   
   };
 
-  const onInputChangePersonal = (
-    event: React.ChangeEvent<HTMLInputElement>
+  const onInputChangePersonal = (event: React.ChangeEvent<HTMLInputElement>
   ) => {
     var name = event.currentTarget.name;
     var newValue = event.currentTarget.value;
     setPersonalinfo((prev) => ({ ...prev, [name]: newValue }));
   };
 
-  const onTextAreaChangePersonalDetails = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
+  const onTextAreaChangePersonalDetails = (event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     var name = event.currentTarget.name;
     var newValue = event.currentTarget.value;

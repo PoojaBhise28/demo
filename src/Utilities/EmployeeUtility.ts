@@ -46,11 +46,15 @@ export default function EmployeeUtility(id:number) {
             alert(Employeeinfo.id);
             console.log(Employeeinfo.id + "update");
             await UpdateEmployeeInfoAsync( Employeeinfo,Employeeinfo.id);
+            navigate("/showList");
+   
             console.log("Employee data updated successfully.");
           } else {
             alert(Employeeinfo.id + "new");
             alert(JSON.stringify(Employeeinfo));
             await CreateEmployeeInfo(Employeeinfo);
+            navigate("/showList");
+   
             console.log("New Employee data created successfully.");
           }
                setEmployeeinfo(initialValue);

@@ -9,7 +9,7 @@ export default function AcademicDetailComponent() {
   return (
     <div className="Container">
       <div className="Academic-Container">
-        <form>
+        <div>
           <h1>Academic Details</h1>
           <label htmlFor="institutionName">Institution Name</label>
           <input
@@ -93,7 +93,7 @@ export default function AcademicDetailComponent() {
           >
             ShowList
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );

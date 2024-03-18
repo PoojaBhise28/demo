@@ -44,10 +44,12 @@ button {
   margin: 2px;
   cursor: pointer;
   border-radius: 4px;
+  align-items: center;
 }
 
 button:hover {
   background-color: #45a049;
+  
 }
 
 button:active {

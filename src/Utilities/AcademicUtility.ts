@@ -53,10 +53,12 @@ export default function AcademicUtility(id: number) {
       console.log(Academicinfo.id + "update");
       await UpdateAcademicalInfo(Academicinfo.id, Academicinfo);
       console.log("User data updated successfully.");
+      navigate("/showlist");
     } else {
       alert(Academicinfo.id + "new");
       await CreateAcademicalInfo(Academicinfo);
       console.log("New user data created successfully.");
+      navigate("/showlist");
     }
 
     setAcademicinfo(initialValue);

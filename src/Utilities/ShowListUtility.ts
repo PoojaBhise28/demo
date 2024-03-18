@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import PersonalModel from "../Model/PersonalModel";
-import { DeletePersonInfoAsync, GetPersonInfoAsync } from "../Services/PersonalInfoServices";
+import { DeletePersonInfoAsync, DeletePersonalInfoById, GetPersonInfoAsync } from "../Services/PersonalInfoServices";
 import { Navigate, useNavigate } from "react-router-dom";
 import AcademicModel from "../Model/AcademicModel";
 import { DeleteAcademicInfoAsync, GetAcademicInfoAsync, getAcademicalInfo } from "../Services/AcademicService";
@@ -77,7 +77,7 @@ const ShowListUtility = () => {
     const confirmation = window.confirm("Are you sure you want to delete this user?");
     if (confirmation) {
       try {
-        await DeleteAcademicInfoAsync(id);
+        await DeletePersonalInfoById(id);
         alert("User deleted successfully!");
         
       } catch (error) {

@@ -20,10 +20,12 @@ export default function RegisterUtilities() {
        await CreateUser(Registerinfo);
       console.log("Register Successful");
       alert("Success");
+      
     } catch (error) {
       console.error("An error occurred during registration:", error);
       alert("An error occurred during registration. Please try again later.");
     }
+    setRegisterInfo(initialValue);
   };
 
   const onInputChangeRegister = (

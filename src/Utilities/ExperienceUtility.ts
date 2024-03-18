@@ -57,10 +57,12 @@ export default function ExperienceUtility(id:number) {
       console.log(Experienceinfo.id + "update");
       await UpdateExperienceInfo( Experienceinfo.id,Experienceinfo);
       console.log("User data updated successfully.");
+      navigate("/showlist");
     } else {
       alert(Experienceinfo.id + "new");
       await CreateExperienceInfo(Experienceinfo);
       console.log("New user data created successfully.");
+      navigate("/showlist");
     }
 
     setExperienceinfo(initialValue);

@@ -13,7 +13,7 @@ export default function AddressDetailComponent() {
 
     <div className="Container">
       <div className="container-address">
-        <form>
+        <div>
           <h1>Address Detail</h1>
           <label>Country</label>
           
@@ -68,7 +68,7 @@ export default function AddressDetailComponent() {
           ></textarea>
         <button onClick={addressUtility.onSaveAddress}>Save</button>
         <button onClick={addressUtility.handelShowList}>ShowList</button>
-        </form>
+        </div>
       </div>
     </div>
   );
