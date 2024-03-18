@@ -1,5 +1,6 @@
 import { useState } from "react";
 import UserModel from "../Model/UserModel";
+import { CreateUser } from "../Services/RegisterService";
 
 
 
@@ -16,7 +17,7 @@ export default function RegisterUtilities() {
   const handelRegister = async () => {
     try {
       alert(JSON.stringify(Registerinfo));
-       //await CreateUser(Registerinfo);
+       await CreateUser(Registerinfo);
       console.log("Register Successful");
       alert("Success");
     } catch (error) {

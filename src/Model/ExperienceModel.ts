@@ -1,11 +1,11 @@
 
 interface ExperienceModel{
-    Id:number;
-    UserId:string;
-    CompanyName:string;
-    StartYear:number;
-    EndYear:number;
-    DesignationId:number
+    id:number;
+    userId:number;
+    companyName:string;
+    startYear:number;
+    endYear:number;
+    designationId:number
 }
 export default  ExperienceModel;
 

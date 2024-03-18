@@ -1,63 +1,14 @@
-// import React, { useState, useEffect } from 'react';
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
+import ShowListUtility from "../Utilities/ShowListUtility";
 import PersonalModel from "../Model/PersonalModel";
-import {   DeletePersonInfoAsync, DeletePersonalInfoById, GetPersonInfoAsync, getPersonalInfoById } from "../Services/PersonalInfoServices";
-import { useNavigate, useParams } from "react-router-dom";
+import AcademicModel from "../Model/AcademicModel";
+import "../Style/showlist.css"
 
-const Fetch = () => {
- 
-
-  const [personalinfo, setPersonalinfo] = useState<PersonalModel[]>([]);
-  const navigatetoPersonalDetails = useNavigate();
-
-  // useEffect(() => {
-  //   fetch(`http://localhost:5203/api/personalInfo`)
-  //     .then((res) => {
-  //       if (!res.ok) {
-  //         throw new Error('Failed to fetch data');
-  //       }
-  //       return res.json();
-  //     })
-  //     .then((data) => {
-  //       setPersonalinfo(data);
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error fetching data:', error);
-  //     });
-  // }, []);
-
-  useEffect(() => {
-    async function fetchMyAPI() {
-      const response = await GetPersonInfoAsync(3);
-      //const response = await getPersonalInfoById(13);
-      alert(JSON.stringify(response));
-      alert(JSON.stringify(response.data));
-      setPersonalinfo(response.data);
-    }
-    fetchMyAPI();
-  }, []);
-
-  const handelUpdateData = (id: number) => {
-    // const selectedUser = userInfo.find(user => user.userId === id);
-    // setRowData(selectedUser || null);
-    navigatetoPersonalDetails("/PersonalDetails/" + id);
-  };
-
-  const handelDelete = async (id: number) => {
-    const confirmation = window.confirm("Are you sure you want to delete this user?");
-    if (confirmation) {
-      try {
-        await DeletePersonInfoAsync(id);
-        alert("User deleted successfully!");
-     
-      } catch (error) {
-        console.error("Error deleting user:", error);
-        alert("An error occurred while deleting user. Please try again later.");
-      }
-    }
-  };
-
-    
+export default function ShowListComponent() {
+  
+  const showListUtility = ShowListUtility();
+  console.log("Personal Info:", showListUtility.personalInfo);
+  console.log("Academic Info:", showListUtility.Academicinfo);
   return (
     <div className="show-container">
       <h1>Personal Data</h1>
@@ -75,7 +26,7 @@ const Fetch = () => {
           </tr>
         </thead>
         <tbody>
-          {personalinfo.map((data, index) => (
+          {showListUtility.personalInfo.map((data, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
               <td>{data.firstName}</td>
@@ -84,13 +35,12 @@ const Fetch = () => {
               <td>{data.mobileNumber}</td>
               <td>{data.description}</td>
               <td>
-                <button type="button" onClick={() => handelUpdateData(data.id)}>
-                  {/* <button type="button" onClick={() => handelUpdateData(data)}> */}
+                <button type="button" onClick={() => showListUtility.handleUpdateDataPersonal(data.id)}>
                   Edit
                 </button>
               </td>
               <td>
-                <button type="button" onClick={() => handelDelete(data.id)}>
+                <button type="button" onClick={() => showListUtility.handleDeletePersonal(data.id)}>
                   Delete
                 </button>
               </td>
@@ -98,9 +48,156 @@ const Fetch = () => {
           ))}
         </tbody>
       </table>
-      {/* {rowData && <PersonalInformation rowData = {rowData}/>} */}
+      <h1>Address Details</h1>
+      <table className="contact-list">
+        <thead>
+          <tr>
+            <th>Sr. no</th>
+            <th>Country</th>
+            <th>State</th>
+            <th>city</th>
+            <th>Address</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {showListUtility.Addressinfo.map((data, index) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+              <td>{data.countryId}</td>
+              <td>{data.stateId}</td>
+              <td>{data.city}</td>
+              <td>{data.address}</td>
+              <td>
+                <button type="button" onClick={() => showListUtility.handleUpdateDataAddress(data.id)}>
+                  Edit
+                </button>
+              </td>
+              <td>
+                <button type="button" onClick={() => showListUtility.handleDeleteAddress(data.id)}>
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+
+      <h1>Academic Details</h1>
+      <table className="contact-list">
+        <thead>
+          <tr>
+            <th>Sr. no</th>
+            <th>InstitutionName</th>
+            <th>Degree</th>
+            <th>StartYear</th>
+            <th>EndYear</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {showListUtility.Academicinfo.map((data, index) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+              <td>{data.institutionName}</td>
+              <td>{data.degree}</td>
+              <td>{data.startYear}</td>
+              <td>{data.endYear}</td>
+              <td>
+                <button type="button" onClick={() => showListUtility.handleUpdateDataAcademic(data.id)}>
+                  Edit
+                </button>
+              </td>
+              <td>
+                <button type="button" onClick={() => showListUtility.handleDeleteAcademic(data.id)}>
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <h1>Employee Details</h1>
+      <table className="contact-list">
+        <thead>
+          <tr>
+            <th>Sr. no</th>
+           
+            <th>CurrentCTC</th>
+            <th>ExpectedCTC</th>
+            <th>NoticePeriod</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {showListUtility.Employeeinfo.map((data, index) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+            
+              <td>{data.currentCTC}</td>
+              <td>{data.expectedCTC}</td>
+              <td>{data.noticePeriod}</td>
+              <td>
+                <button type="button" onClick={() => showListUtility.handleUpdateDataEmployee(data.id)}>
+                  Edit
+                </button>
+              </td>
+              <td>
+                <button type="button" onClick={() => showListUtility.handleDeleteEmployee(data.id)}>
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+
+      <h1>Experience Details</h1>
+      <table className="contact-list">
+        <thead>
+          <tr>
+            <th>Sr. no</th>
+            <th>Company Name</th>
+            <th>designation</th>
+            <th>StartYear</th>
+            <th>EndYear</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {showListUtility.Experienceinfo.map((data, index) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+              <td>{data.companyName}</td>
+              <td>{data.designationId}</td>
+              <td>{data.startYear}</td>
+              <td>{data.endYear}</td>
+             
+              <td>
+                <button type="button" onClick={() => showListUtility.handleUpdateDataExperience(data.id)}>
+                  Edit
+                </button>
+              </td>
+              <td>
+                <button type="button" onClick={() => showListUtility.handleDeleteExperience(data.id)}>
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      
+      
+
     </div>
   );
 }
-
-export default Fetch;

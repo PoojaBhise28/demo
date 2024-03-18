@@ -1,22 +1,64 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddressModel from "../Model/AddressModel";
 import { useNavigate } from "react-router-dom";
-import { CreateAddressInfo } from "../Services/AddressInfoService";
+import { CreateAddressInfo, UpdateAddressnfoAsync, getAddressInfoById } from "../Services/AddressInfoService";
 
-export default function AddressUtility(){
+export default function AddressUtility(id:number){
     const navigate= useNavigate();
     const initialValue : AddressModel = {
-        Address: "",
-        City: "",
-        StateId: "",
-        CountryId: 0,
-        id: 0,
-        userId: 2
+        address: "",
+        city: "",
+        stateId: 0,
+        countryId: 0,
+        id: id,
+        userId: 1
     }
+
     const[Addressinfo, setAddressinfo ] =  useState<AddressModel>(initialValue);
+
+    useEffect(() => {
+      async function fetchData() {
+        try {
+          if (id > 0) {
+            const response = await getAddressInfoById(id);
+            if (response.data) {
+              setAddressinfo(response.data);
+            }
+          }
+        } catch (error) {
+          console.error('Error fetching Address information:', error);
+        }
+      }
+  
+      fetchData();
+  
+      // return () => {
+        
+      // };
+    }, [id]);
+  
+    
     const onSaveAddress = async() => {
-        alert(JSON.stringify(Addressinfo));
-        CreateAddressInfo(Addressinfo);
+
+        if (Addressinfo.id !== 0) {
+            alert(Addressinfo.id);
+            console.log(Addressinfo.id + "update");
+            await UpdateAddressnfoAsync( Addressinfo,Addressinfo.id);
+            alert("Address  updated successfully.");
+            console.log("Address  updated successfully.");
+            navigate("/showlist");
+            
+          } else {
+            alert(Addressinfo.id + "new");
+            await CreateAddressInfo(Addressinfo);
+            console.log("New Address  created successfully.");
+            alert("Address  created successfully.");
+            navigate("/showlist");
+          }
+      
+
+          setAddressinfo(initialValue);
+       
     };
     const onInputChangeAddress = (event: React.ChangeEvent<HTMLInputElement>) =>{
         var name  = event.currentTarget.name;
@@ -35,10 +77,15 @@ export default function AddressUtility(){
     
         setAddressinfo((prevState) => ({ ...prevState, [name]: newValue }));
        
-        // alert(name);
       };
+
       const handelShowList=()=>{
         navigate("/showlist");
       }
-    return{handelShowList,onSelectFieldChangeAddress,Addressinfo,setAddressinfo,onSaveAddress,onInputChangeAddress,onTextAreaChangeAddress};
+    return{handelShowList,
+        onSelectFieldChangeAddress,
+        Addressinfo,setAddressinfo,
+        onSaveAddress,
+        onInputChangeAddress
+        ,onTextAreaChangeAddress};
 };

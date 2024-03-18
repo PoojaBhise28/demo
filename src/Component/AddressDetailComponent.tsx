@@ -1,14 +1,16 @@
 import React from "react";
 import "../Style/Address.css"
 import AddressUtility from "../Utilities/AddressUtility";
+import { useParams } from "react-router-dom";
 
 
 export default function AddressDetailComponent() {
   
-  const addressUtility =  AddressUtility();
-
+  const {id=0} = useParams();
+  const addressUtility =  AddressUtility(+id);
 
   return (
+
     <div className="Container">
       <div className="container-address">
         <form>
@@ -16,10 +18,9 @@ export default function AddressDetailComponent() {
           <label>Country</label>
           
           <select
-
-            id="CountryId"
-            name="CountryId"
-             value={addressUtility.Addressinfo.CountryId}
+         id="countryId"
+            name="countryId"
+             value={addressUtility.Addressinfo.countryId}
              onChange={addressUtility.onSelectFieldChangeAddress}
           >
             <option value={0}>---Select Country----</option>
@@ -29,28 +30,27 @@ export default function AddressDetailComponent() {
             <option value={4}>Canada</option>
           </select>
           <br></br>
-          
           <label>State</label>
           
           <select
-
-            id="StateId"
-            name="StateId"
-             value={addressUtility.Addressinfo.StateId}
+           id="stateId"
+            name="stateId"
+             value={addressUtility.Addressinfo.stateId}
              onChange={addressUtility.onSelectFieldChangeAddress}
           >
-            <option value={0}>---Select State----</option>
-            <option value={1}>Maharashtra</option>
-            <option value={2}>delhi</option>
-            <option value={3}>Rajastan</option>
-            <option value={4}>UP</option>
+           <option value={0}>---Select State----</option>
+            <option value={4}>Maharashtra</option>
+            <option value={2}>Rajastan</option>
+            <option value={3}>California</option>
+            <option value={7}>New York</option>
+            <option value={5}>Tokyo</option>
+            <option value={6}>Columbia</option>
           </select>
-
 
           <br></br>
           <label>City</label>
-          <input type="text" name="City" placeholder="City" maxLength={50}
-          value={addressUtility.Addressinfo.City}
+          <input type="text" id ="city" name="city" placeholder="City" maxLength={50}
+          value={addressUtility.Addressinfo.city}
           onChange={addressUtility.onInputChangeAddress}
        
           autoComplete="off"></input>
@@ -58,11 +58,11 @@ export default function AddressDetailComponent() {
           <textarea
             rows={5}
             cols={20}
-            name="Address"
+            name="address"
             id="Address"
-            placeholder="Address"
+            placeholder="address"
             autoComplete="off"
-            value={addressUtility.Addressinfo.Address}
+            value={addressUtility.Addressinfo.address}
              onChange={addressUtility.onTextAreaChangeAddress}
         
           ></textarea>

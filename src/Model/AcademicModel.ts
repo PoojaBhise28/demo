@@ -2,13 +2,13 @@
 
  interface AcademicModel {
 
-    Id:number;
-    InstitutionName:string;
-    StartYear:string;
-    EndYear:string;
-    Percentage:string;
-    Degree:string;
-    UserId:string;
+    id:number;
+    institutionName:string;
+    startYear:string;
+    endYear:string;
+    percentage:string;
+    degree:string;
+    UserId:number;
 
 }
 export default  AcademicModel;

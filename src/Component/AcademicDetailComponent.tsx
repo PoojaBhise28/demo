@@ -1,35 +1,35 @@
-import React from 'react'
-import AcademicUtility from '../Utilities/AcademicUtility'
+import React from "react";
+import AcademicUtility from "../Utilities/AcademicUtility";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function AcademicDetailComponent() {
-    const academicUtility =AcademicUtility();
-   
+  const { id = 0 } = useParams();
+  const academicUtility = AcademicUtility(+id);
+
   return (
-    <div className='Container'>
-        <div className='Academic-Container' >
-            <form>
-            <h1>Academic Details</h1>
-            <label htmlFor="InstitutionName">Institution Name</label>
+    <div className="Container">
+      <div className="Academic-Container">
+        <form>
+          <h1>Academic Details</h1>
+          <label htmlFor="institutionName">Institution Name</label>
           <input
             type="text"
-            name="InstitutionName"
-            id="InstitutionName"
+            name="institutionName"
+            id="institutionName"
             placeholder="Institution Name"
             autoComplete="off"
             maxLength={40}
-             onChange={academicUtility.onInputChangeAcademic}
-             value={academicUtility.Academicinfo.InstitutionName}
+            onChange={academicUtility.onInputChangeAcademic}
+            value={academicUtility.Academicinfo.institutionName}
           />
-          
+
           <label htmlFor="Degree">Degree </label>
           <select
-
-            id="Degree"
-            name="Degree"
+            id="degree"
+            name="degree"
             autoComplete="off"
-          
-              value={academicUtility.Academicinfo.Degree}
-              onChange={academicUtility.onSelectFieldChangeAcademic}
+            value={academicUtility.Academicinfo.degree}
+            onChange={academicUtility.onSelectFieldChangeAcademic}
             style={{ width: "100%", padding: "10px" }}
           >
             <option value={0}>---Select Degree----</option>
@@ -39,55 +39,62 @@ export default function AcademicDetailComponent() {
             <option value={3}>Bachlor of Commerce (B.com)</option>
             <option value={5}>Other</option>
           </select>
-         <label htmlFor="StartYear">Start Year</label>
+          <label htmlFor="StartYear">Start Year</label>
           <input
             type="number"
-            name="StartYear"
-            id="StartYear"
+            name="startYear"
+            id="startYear"
             placeholder="Start Year"
             autoComplete="off"
             maxLength={4}
             onChange={academicUtility.handelChangeNumberAcademic}
-             value={academicUtility.Academicinfo.StartYear}
-             style={{ width: "100%", padding: "10px" }}
+            value={academicUtility.Academicinfo.startYear}
+            style={{ width: "100%", padding: "10px" }}
           />
           <label htmlFor="EndYear">End Year</label>
           <input
             type="number"
-            name="EndYear"
-            id="EndYear"
+            name="endYear"
+            id="endYear"
             placeholder="End Year"
             autoComplete="off"
             maxLength={4}
             onChange={academicUtility.handelChangeNumberAcademic}
-            value={academicUtility.Academicinfo.EndYear}
+            value={academicUtility.Academicinfo.endYear}
             style={{ width: "97%", padding: "10px" }}
           />
-          
+
           <label htmlFor="Percentage">Percentage</label>
           <input
             type="number"
-            name="Percentage"
-            id="Percentage"
+            name="percentage"
+            id="percentage"
             placeholder="Percentage "
             autoComplete="off"
             maxLength={4}
             onChange={academicUtility.handelChangeNumberAcademic}
-            value={academicUtility.Academicinfo.Percentage}
+            value={academicUtility.Academicinfo.percentage}
             style={{ width: "97%", padding: "10px" }}
           />
           <br></br>
           <br></br>
-        <button  style={{ width: "100%", padding: "10px" }}
-        onClick={academicUtility.onSaveAcademic}>Save</button>
-        <br></br>
-        
-        <br></br>
-        <button   style={{ width: "100%", padding: "10px" }}
-         onClick={academicUtility.handelShowList}>ShowList</button>
-            </form>
-        </div>
-     
+          <button
+            style={{ width: "100%", padding: "10px" }}
+            onClick={academicUtility.onSaveAcademic}
+          >
+            Save
+          </button>
+          <br></br>
+
+          <br></br>
+          <button
+            style={{ width: "100%", padding: "10px" }}
+            onClick={academicUtility.handelShowList}
+          >
+            ShowList
+          </button>
+        </form>
+      </div>
     </div>
-  )
+  );
 }

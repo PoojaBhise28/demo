@@ -1,61 +1,63 @@
 import React from 'react'
 import ExperienceUtility from '../Utilities/ExperienceUtility';
+import { useParams } from 'react-router-dom';
 
 export default function ExperienceDetailsComponent() {
   
-  const experienceUtility =ExperienceUtility();
+  const {id =0} = useParams();
+  const experienceUtility =ExperienceUtility(+id);
   
   return (
     <div className='Container'>
       <div className='Experience-container'></div>
-      <form>
+      <div>
         <h1>Experience Details</h1>
-        <label htmlFor="CompanyName">Company Name</label>
+        <label htmlFor="companyName">Company Name</label>
           <input
             type="text"
-            name="CompanyName"
-            id="CompanyName"
+            name="companyName"
+            id="companyName"
             placeholder="Company Name"
             autoComplete="off"
             maxLength={50}
             onChange={experienceUtility.onInputChangeExperience}
-             value={experienceUtility.Experienceinfo.CompanyName}
+             value={experienceUtility.Experienceinfo.companyName}
           />
-           <label htmlFor="StartYear">Start Year</label>
+           <label htmlFor="startYear">Start Year</label>
           <input
             type="number"
-            name="StartYear"
-            id="StartYear"
-            placeholder="Start Year"
+            name="startYear"
+            id="startYear"
+            placeholder="start Year"
             autoComplete="off"
             maxLength={4}
             onChange={experienceUtility.onInputChangeExperience}
-             value={experienceUtility.Experienceinfo.StartYear}
+             value={experienceUtility.Experienceinfo.startYear}
              style={{ width: "97%", padding: "10px" }}
          />
-          <label htmlFor="EndYear">End Year</label>
+          <label htmlFor="endYear">End Year</label>
           <input
             type="number"
-            name="EndYear"
-            id="EndYear"
+            name="endYear"
+            id="endYear"
             placeholder="End Year"
             autoComplete="off"
             maxLength={4}
             onChange={experienceUtility.onInputChangeExperience}
-             value={experienceUtility.Experienceinfo.EndYear}
+             value={experienceUtility.Experienceinfo.endYear}
              style={{ width: "97%", padding: "10px" }}
           />
         
-          <label htmlFor="DesignationId">DesignationId</label>
+          <label htmlFor="designationId">DesignationId</label>
           <input
             type="text"
-            name="DesignationId"
-            id="DesignationId"
+            name="designationId"
+            id="designationId"
             placeholder="Designation Id"
             autoComplete="off"
             maxLength={4}
             onChange={experienceUtility.onInputChangeExperience}
-             value={experienceUtility.Experienceinfo.DesignationId}
+             value={experienceUtility.Experienceinfo.designationId}
             
           />
 
@@ -65,7 +67,7 @@ export default function ExperienceDetailsComponent() {
           <br></br>
           <button style={{ width: "97%", padding: "10px" }} 
           onClick={experienceUtility.handelShowList}>ShowList</button>
-      </form>
+      </div>
     </div>
   )
 }

@@ -1,8 +1,9 @@
 interface AddressModel{
-    Address:string;
-    City:string
-    StateId :string
-    CountryId :number;
+    address:string;
+    city:string
+    stateId :number
+    countryId :number;
+    
     id:number
     userId:number
 }

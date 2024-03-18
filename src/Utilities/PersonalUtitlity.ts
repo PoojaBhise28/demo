@@ -19,25 +19,25 @@ export default function PersonalInfoUtility(id: number) {
     mobileNumber: "",
     phoneNumber: "",
     description: "",
-    userId: 3,
+    userId: 11,
     IsActive: false,
     id: id,
   };
 
 
-//   useEffect(() => {
-//     async function getPersonalInfo() {
-//       let response = await getPersonalInfoById(id);
-//       alert(JSON.stringify(response));
+  // useEffect(() => {
+  //   async function getPersonalInfo() {
+  //     let response = await getPersonalInfoById(id);
+  //     alert(JSON.stringify(response));
 
-//       if (response.data) {
-//         setPersonalinfo(response.data);
-//       }
-//     }
-//     if (id > 0) {
-//       getPersonalInfoById(id);
-//     }
-//   }, [id]);
+  //     if (response.data) {
+  //       setPersonalinfo(response.data);
+  //     }
+  //   }
+  //   if (id > 0) {
+  //     getPersonalInfoById(id);
+  //   }
+  // }, [id]);
 
 
 useEffect(() => {

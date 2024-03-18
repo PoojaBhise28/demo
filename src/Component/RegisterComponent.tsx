@@ -6,7 +6,7 @@ export default function RegisterComponent() {
 
   return (
     <div className="Container">
-      <form>
+      <div>
         <h1>Register</h1>
         <label>Email Id</label>
         <input
@@ -49,7 +49,7 @@ export default function RegisterComponent() {
         <p>
           Back to Login Page <a href="/login">Login</a>
         </p>
-      </form>
+      </div>
     </div>
   );
 }

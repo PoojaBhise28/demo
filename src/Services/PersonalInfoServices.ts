@@ -237,7 +237,7 @@ export const DeletePersonInfoAsync = async (id: number) => {
   }
 };
 
-export const UpdatePersonInfoAsync = async (data: any, id: number) => {
+export const UpdatePersonInfoAsync = async (data: PersonalModel, id: number) => {
   try {
     const res = await axios.put(`http://localhost:5203/api/personalInfo/${id}`, data);
     console.table(res);
