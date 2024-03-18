@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import AcademicUtility from "../Utilities/AcademicUtility";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function AcademicDetailComponent() {
-  const { id = 0 } = useParams();
+    const { id = "0" } = useParams<{ id: string }>();
+  
   const academicUtility = AcademicUtility(+id);
 
+ 
   return (
     <div className="Container">
-      <div className="Academic-Container">
+      <div className="Academic-Container" >
         <div>
           <h1>Academic Details</h1>
           <label htmlFor="institutionName">Institution Name</label>
@@ -22,7 +24,7 @@ export default function AcademicDetailComponent() {
             onChange={academicUtility.onInputChangeAcademic}
             value={academicUtility.Academicinfo.institutionName}
           />
-
+         {academicUtility.errors.institutionName && <p className="error-message">{academicUtility.errors.institutionName}</p>}
           <label htmlFor="Degree">Degree </label>
           <select
             id="degree"
@@ -30,7 +32,8 @@ export default function AcademicDetailComponent() {
             autoComplete="off"
             value={academicUtility.Academicinfo.degree}
             onChange={academicUtility.onSelectFieldChangeAcademic}
-            style={{ width: "100%", padding: "10px" }}
+            style={{ width: "100%", padding: "10px",border: '2px solid #1a1a1a' }}
+            // style={{ border: '1px solid #949492' }}
           >
             <option value={0}>---Select Degree----</option>
             <option value={1}>Bachlores of Engineering (B.E)</option>
@@ -49,8 +52,10 @@ export default function AcademicDetailComponent() {
             maxLength={4}
             onChange={academicUtility.handelChangeNumberAcademic}
             value={academicUtility.Academicinfo.startYear}
-            style={{ width: "100%", padding: "10px" }}
+            style={{ width: "97%", padding: "10px", border: '2px solid #1a1a1a' }}
           />
+           {academicUtility.errors.startYear && <p className="error-message">{academicUtility.errors.startYear}</p>}
+          
           <label htmlFor="EndYear">End Year</label>
           <input
             type="number"
@@ -61,8 +66,9 @@ export default function AcademicDetailComponent() {
             maxLength={4}
             onChange={academicUtility.handelChangeNumberAcademic}
             value={academicUtility.Academicinfo.endYear}
-            style={{ width: "97%", padding: "10px" }}
+            style={{ width: "97%", padding: "10px" ,border: '2px solid #1a1a1a' }}
           />
+           {academicUtility.errors.endYear && <p className="error-message">{academicUtility.errors.endYear}</p>}
 
           <label htmlFor="Percentage">Percentage</label>
           <input
@@ -74,21 +80,24 @@ export default function AcademicDetailComponent() {
             maxLength={4}
             onChange={academicUtility.handelChangeNumberAcademic}
             value={academicUtility.Academicinfo.percentage}
-            style={{ width: "97%", padding: "10px" }}
+            style={{ width: "97%", padding: "10px" ,border: '2px solid #1a1a1a' }}
           />
+           {academicUtility.errors.percentage && <p className="error-message">{academicUtility.errors.percentage}
+           </p>}
+          <br></br>
           <br></br>
           <br></br>
           <button
-            style={{ width: "100%", padding: "10px" }}
+            style={{ width: "97%", padding: "10px" }}
             onClick={academicUtility.onSaveAcademic}
           >
             Save
           </button>
           <br></br>
 
-          <br></br>
+         
           <button
-            style={{ width: "100%", padding: "10px" }}
+            style={{ width: "97%", padding: "10px" }}
             onClick={academicUtility.handelShowList}
           >
             ShowList

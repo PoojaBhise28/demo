@@ -4,14 +4,13 @@ import { useNavigate } from "react-router-dom";
 import {
   CreatePersonalInfo,
   UpdatePersonInfoAsync,
-  UpdatePersonalInfo,
   getPersonalInfoById,
 } from "../Services/PersonalInfoServices";
 import { JSX } from "react/jsx-runtime";
-import { validatePersonalInfo } from "../Validations/validatePersonalInfo";
 
 export default function PersonalInfoUtility(id: number) {
   const navigate = useNavigate();
+  const [error, setError] = useState<string>("");
 
   const initialValue: PersonalModel = {
     firstName: "",
@@ -24,7 +23,39 @@ export default function PersonalInfoUtility(id: number) {
     id: id,
   };
 
+  const [personalinfo, setPersonalinfo] = useState<PersonalModel>(initialValue);
+  const [errors, setErrors] = useState<Partial<Record<string, string>>>({});
 
+  const validateFields = () => {
+    const { firstName, lastName, phoneNumber, mobileNumber, description } =
+      personalinfo;
+    const newErrors: Partial<Record<string, string>> = {};
+
+    if (!personalinfo.firstName) {
+      newErrors.firstName = "firstname name is requeried";
+    } else if (personalinfo.firstName.length > 40) {
+      newErrors.firstName = "firstname Name must be less than 40 characters";
+    }
+    if (!personalinfo.firstName) {
+      newErrors.firstName = "firstname name is requeried";
+    } else if (personalinfo.firstName.length > 40) {
+      newErrors.firstName = "firstname Name must be less than 40 characters";
+    }
+    const phoneRegex = /^\d{10}$/;
+    if (!personalinfo.phoneNumber) {
+      newErrors.phoneNumber = "PhoneNumber is required";
+    } else if (!phoneRegex.test(phoneNumber)) {
+      newErrors.phoneNumber = "Phone Number must be 10 digits";
+    }
+    const mobileRegex = /^\d{10}$/;
+    if (!personalinfo.mobileNumber) {
+      newErrors.mobileNumber = "mobileNumber is required";
+    } else if (!mobileRegex.test(phoneNumber)) {
+      newErrors.mobileNumber = "Mobile Numberr must be 10 digits";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -47,40 +78,38 @@ export default function PersonalInfoUtility(id: number) {
     // };
   }, [id]);
 
-  const [personalinfo, setPersonalinfo] = useState<PersonalModel>(initialValue);
-
   const handelSavePersonalInfo = async () => {
-    const validationErrors = validatePersonalInfo(personalinfo);
-    if (validationErrors.length === 0) {
+    if(validateFields()){
+    try {
       if (personalinfo.id !== 0) {
-        alert(personalinfo.id);
-        console.log(personalinfo.id + "update");
         await UpdatePersonInfoAsync(personalinfo, personalinfo.id);
         console.log("User data updated successfully.");
       } else {
-        alert(personalinfo.id + "new");
         await CreatePersonalInfo(personalinfo);
         console.log("New user data created successfully.");
       }
       setPersonalinfo(initialValue);
+      setError(""); // Clear error on successful save
+    } catch (error) {
+      console.error("Error saving personal information:", error);
     }
-    else{
-      alert("please provide valid credentials");
-    }
+  }
   };
 
   const handelShowList = () => {
     navigate("/showlist");
   };
 
-  const onInputChangePersonal = (event: React.ChangeEvent<HTMLInputElement>
+  const onInputChangePersonal = (
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
     var name = event.currentTarget.name;
     var newValue = event.currentTarget.value;
     setPersonalinfo((prev) => ({ ...prev, [name]: newValue }));
   };
 
-  const onTextAreaChangePersonalDetails = (event: React.ChangeEvent<HTMLTextAreaElement>
+  const onTextAreaChangePersonalDetails = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     var name = event.currentTarget.name;
     var newValue = event.currentTarget.value;

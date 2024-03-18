@@ -33,7 +33,7 @@ export default function ExperienceDetailsComponent() {
             maxLength={4}
             onChange={experienceUtility.onInputChangeExperience}
              value={experienceUtility.Experienceinfo.startYear}
-             style={{ width: "97%", padding: "10px" }}
+             style={{ width: "97%", padding: "10px" ,border: '2px solid #1a1a1a' }}
          />
           <label htmlFor="endYear">End Year</label>
           <input
@@ -45,7 +45,8 @@ export default function ExperienceDetailsComponent() {
             maxLength={4}
             onChange={experienceUtility.onInputChangeExperience}
              value={experienceUtility.Experienceinfo.endYear}
-             style={{ width: "97%", padding: "10px" }}
+             
+             style={{ width: "97%", padding: "10px" ,border: '2px solid #1a1a1a' }}
           />
         
           <label htmlFor="designationId">DesignationId</label>

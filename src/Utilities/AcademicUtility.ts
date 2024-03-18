@@ -19,8 +19,39 @@ export default function AcademicUtility(id: number) {
     degree: "",
     UserId: 3
   };
-
+ 
   const [Academicinfo, setAcademicinfo] = useState<AcademicModel>(initialValue);
+  const [errors, setErrors] = useState<Partial<Record<string, string>>>({});
+  const validateFields = () => {
+    const { institutionName, startYear, endYear, percentage } = Academicinfo;
+    const newErrors: Partial<Record<string, string>> = {};
+
+    if (!institutionName) {
+      newErrors.institutionName = "Institution Name is required";
+    } else if (institutionName.length > 40) {
+      newErrors.institutionName = "Institution Name must be less than 40 characters";
+    }
+
+    const currentYear = new Date().getFullYear();
+    const startYearNum = +startYear;
+    const endYearNum = +endYear;
+    const percentageNum = +percentage;
+
+    if (isNaN(startYearNum) || startYearNum < 1900 || startYearNum > currentYear) {
+      newErrors.startYear = "Please enter a valid start year";
+    }
+
+    if (isNaN(endYearNum) || endYearNum < 1900 || endYearNum > currentYear || endYearNum < startYearNum) {
+      newErrors.endYear = "Please enter a valid end year";
+    }
+
+    if (isNaN(percentageNum) || percentageNum < 0 || percentageNum > 100 || percentage =="") {
+      newErrors.percentage = "Percentage must be a number between 0 and 100";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
 
   useEffect(() => {
@@ -46,8 +77,7 @@ export default function AcademicUtility(id: number) {
 
 
   const onSaveAcademic = async () => {
-    alert("heyyyy");
-
+   if(validateFields()){
     if (Academicinfo.id !== 0) {
       alert(Academicinfo.id);
       console.log(Academicinfo.id + "update");
@@ -60,7 +90,10 @@ export default function AcademicUtility(id: number) {
       console.log("New user data created successfully.");
       navigate("/showlist");
     }
-
+  }
+  else{
+    alert("Please enter valid input")
+  }
     setAcademicinfo(initialValue);
   };
 
@@ -98,5 +131,6 @@ export default function AcademicUtility(id: number) {
     Academicinfo,
     onSaveAcademic,
     onInputChangeAcademic,
+    errors
   };
 }

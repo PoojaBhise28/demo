@@ -2,9 +2,11 @@
   margin: 20px;
 }
 
-h1 {
+.show-container.h1 {
   font-size: 24px;
   margin-bottom: 10px;
+  background-color:rgb(180, 226, 175);
+  text-align: center;
 }
 
 .contact-list {
@@ -15,25 +17,35 @@ h1 {
 
 .contact-list th,
 .contact-list td {
-  border: 1px solid #ddd;
+  border: 1px solid #949492;
+  
   padding: 8px;
   text-align: left;
 }
 
 .contact-list th {
-  background-color: #f2f2f2;
+  
+  /* background-color: rgb(134, 212, 74); */
+  
 }
 
+
 .contact-list tbody tr:nth-child(even) {
+  
   background-color: #f2f2f2;
+  
 }
 
 .contact-list tbody tr:hover {
-  background-color: #ddd;
+
+  background-color: #bff47b;
+  /* background-color:  RGB (168, 74, 212); */
+  
 }
 
 button {
-  background-color: #4caf50;
+  background-color: #007bff;
+  
   color: white;
   border: none;
   padding: 8px 16px;

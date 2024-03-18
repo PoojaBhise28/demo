@@ -1,6 +1,7 @@
 import React from "react";
 import EmployeeUtility from "../Utilities/EmployeeUtility";
-// import "../Style/Employee.css";
+import "../Style/Employee.css"
+
 import { useParams } from "react-router-dom";
 
 export default function EmployementDetailComponent() {
@@ -8,8 +9,8 @@ export default function EmployementDetailComponent() {
   const employeeUtility = EmployeeUtility(+id);
   
   return (
-    <div>
-      <div className="employe-container">
+    <div >
+      <div className="employee-container">
         <div>
           <h1>Employee Details</h1>
         

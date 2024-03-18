@@ -21,7 +21,8 @@ export default function PersonalDetailsComponents() {
             autoComplete="off"
             value={personalInfoUtility.personalinfo.firstName}
             onChange={personalInfoUtility.onInputChangePersonal}
-          ></input>
+           required
+           ></input>
           <label>Last Name</label>
           <input
             type="text"
@@ -31,6 +32,7 @@ export default function PersonalDetailsComponents() {
             autoComplete="off"
             value={personalInfoUtility.personalinfo.lastName}
             onChange={personalInfoUtility.onInputChangePersonal}
+            required
           ></input>
           <label>Mobile Number</label>
           <input
@@ -41,6 +43,7 @@ export default function PersonalDetailsComponents() {
             autoComplete="off"
             value={personalInfoUtility.personalinfo.mobileNumber}
             onChange={personalInfoUtility.onInputChangePersonal}
+            required
           ></input>
           <label>Phone Number</label>
           <input
@@ -51,6 +54,7 @@ export default function PersonalDetailsComponents() {
             autoComplete="off"
             value={personalInfoUtility.personalinfo.phoneNumber}
             onChange={personalInfoUtility.onInputChangePersonal}
+            required
           ></input>
           <label>Description</label>
           <textarea
@@ -61,6 +65,8 @@ export default function PersonalDetailsComponents() {
             autoComplete="off"
             value={personalInfoUtility.personalinfo.description}
             onChange={personalInfoUtility.onTextAreaChangePersonalDetails}
+            required
+            style={{ width: "97%", padding: "10px" ,border: '2px solid #1a1a1a' }}
           ></textarea>
           <br></br>
           <br></br>

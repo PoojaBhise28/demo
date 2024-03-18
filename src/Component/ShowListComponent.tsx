@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import ShowListUtility from "../Utilities/ShowListUtility";
 import PersonalModel from "../Model/PersonalModel";
 import AcademicModel from "../Model/AcademicModel";
-import "../Style/showlist.css"
 
+import "../Style/showlist.css"
 export default function ShowListComponent() {
   
   const showListUtility = ShowListUtility();
