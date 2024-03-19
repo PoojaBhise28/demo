@@ -23,6 +23,8 @@ export default function ExperienceDetailsComponent() {
             onChange={experienceUtility.onInputChangeExperience}
              value={experienceUtility.Experienceinfo.companyName}
           />
+           {experienceUtility.errors.companyName && <p className="error-message">{experienceUtility.errors.companyName}</p>}
+         
            <label htmlFor="startYear">Start Year</label>
           <input
             type="number"
@@ -35,6 +37,9 @@ export default function ExperienceDetailsComponent() {
              value={experienceUtility.Experienceinfo.startYear}
              style={{ width: "97%", padding: "10px" ,border: '2px solid #1a1a1a' }}
          />
+         
+         {experienceUtility.errors.startYear && <p className="error-message">{experienceUtility.errors.startYear}</p>}
+
           <label htmlFor="endYear">End Year</label>
           <input
             type="number"
@@ -48,6 +53,7 @@ export default function ExperienceDetailsComponent() {
              
              style={{ width: "97%", padding: "10px" ,border: '2px solid #1a1a1a' }}
           />
+          {experienceUtility.errors.endYear && <p className="error-message">{experienceUtility.errors.endYear}</p>}
         
           <label htmlFor="designationId">DesignationId</label>
           <input

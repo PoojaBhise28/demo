@@ -23,6 +23,7 @@ export default function PersonalDetailsComponents() {
             onChange={personalInfoUtility.onInputChangePersonal}
            required
            ></input>
+            {personalInfoUtility.errors.firstName && <p className="error-message">{personalInfoUtility.errors.firstName}</p>}
           <label>Last Name</label>
           <input
             type="text"
@@ -34,6 +35,7 @@ export default function PersonalDetailsComponents() {
             onChange={personalInfoUtility.onInputChangePersonal}
             required
           ></input>
+           {personalInfoUtility.errors.lastName && <p className="error-message">{personalInfoUtility.errors.lastName}</p>}
           <label>Mobile Number</label>
           <input
             type="text"
@@ -45,6 +47,7 @@ export default function PersonalDetailsComponents() {
             onChange={personalInfoUtility.onInputChangePersonal}
             required
           ></input>
+           {personalInfoUtility.errors.mobileNumber && <p className="error-message">{personalInfoUtility.errors.mobileNumber}</p>}
           <label>Phone Number</label>
           <input
             type="text"
@@ -56,6 +59,7 @@ export default function PersonalDetailsComponents() {
             onChange={personalInfoUtility.onInputChangePersonal}
             required
           ></input>
+           {personalInfoUtility.errors.phoneNumber && <p className="error-message">{personalInfoUtility.errors.phoneNumber}</p>}
           <label>Description</label>
           <textarea
             rows={5}
@@ -68,6 +72,7 @@ export default function PersonalDetailsComponents() {
             required
             style={{ width: "97%", padding: "10px" ,border: '2px solid #1a1a1a' }}
           ></textarea>
+           {personalInfoUtility.errors.description && <p className="error-message">{personalInfoUtility.errors.description}</p>}
           <br></br>
           <br></br>
           <button onClick={personalInfoUtility.handelSavePersonalInfo}>

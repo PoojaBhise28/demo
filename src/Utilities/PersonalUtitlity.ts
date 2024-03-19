@@ -36,10 +36,10 @@ export default function PersonalInfoUtility(id: number) {
     } else if (personalinfo.firstName.length > 40) {
       newErrors.firstName = "firstname Name must be less than 40 characters";
     }
-    if (!personalinfo.firstName) {
-      newErrors.firstName = "firstname name is requeried";
+    if (!personalinfo.lastName) {
+      newErrors.lastName = "lastName name is requeried";
     } else if (personalinfo.firstName.length > 40) {
-      newErrors.firstName = "firstname Name must be less than 40 characters";
+      newErrors.lastName = "lastName Name must be less than 40 characters";
     }
     const phoneRegex = /^\d{10}$/;
     if (!personalinfo.phoneNumber) {
@@ -123,5 +123,6 @@ export default function PersonalInfoUtility(id: number) {
     onTextAreaChangePersonalDetails,
     onInputChangePersonal,
     handelShowList,
+    errors
   };
 }

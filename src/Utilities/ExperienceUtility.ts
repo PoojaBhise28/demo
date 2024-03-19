@@ -16,7 +16,30 @@ export default function ExperienceUtility(id:number) {
     designationId: 0
   };
   const [Experienceinfo, setExperienceinfo] =useState<ExperienceModel>(initialValue);
+  const [errors, setErrors] = useState<Partial<Record<string, string>>>({});
 
+  const validateFields = () => {
+    const {companyName,startYear,endYear} =Experienceinfo;
+    const newErrors: Partial<Record<string, string>> = {};
+    const currentYear = new Date().getFullYear();
+    const startYearNum = +startYear;
+    const endYearNum = +endYear;
+    if (!companyName) {
+      newErrors.companyName = "companyName Name is required";
+    } else if (companyName.length > 40) {
+      newErrors.companyName = "companyName Name must be less than 40 characters";
+    }
+    if (isNaN(startYearNum) || startYearNum < 1900 || startYearNum > currentYear) {
+      newErrors.startYear = "Please enter a valid start year";
+    }
+
+    if (isNaN(endYearNum) || endYearNum < 1900 || endYearNum > currentYear || endYearNum < startYearNum) {
+      newErrors.endYear = "Please enter a valid end year";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -51,7 +74,7 @@ export default function ExperienceUtility(id:number) {
   };
 
   const onSaveExperience = async () => {
-  
+  if(validateFields()){
     if (Experienceinfo.id !== 0) {
       alert(Experienceinfo.id);
       console.log(Experienceinfo.id + "update");
@@ -64,7 +87,7 @@ export default function ExperienceUtility(id:number) {
       console.log("New user data created successfully.");
       navigate("/showlist");
     }
-
+  }
     setExperienceinfo(initialValue);
   };
   
@@ -74,5 +97,6 @@ export default function ExperienceUtility(id:number) {
     onSaveExperience,
     Experienceinfo,
     setExperienceinfo,
+    errors
   };
 }

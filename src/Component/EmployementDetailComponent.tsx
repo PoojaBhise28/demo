@@ -26,6 +26,8 @@ export default function EmployementDetailComponent() {
             value={employeeUtility.Employeeinfo.noticePeriod}
           />
 
+{employeeUtility.errors.noticePeriod && <p className="error-message">{employeeUtility.errors.noticePeriod}</p>}
+         
 
       <label htmlFor="currentCTC">Current CTC</label>
           <input
@@ -38,6 +40,9 @@ export default function EmployementDetailComponent() {
             value={employeeUtility.Employeeinfo.currentCTC}
           />
 
+    {employeeUtility.errors.currentCTC && <p className="error-message">{employeeUtility.errors.currentCTC}</p>}
+         
+
           <label htmlFor="expectedCTC">Expected CTC</label>
           <input
             type="number"
@@ -49,6 +54,8 @@ export default function EmployementDetailComponent() {
             value={employeeUtility.Employeeinfo.expectedCTC}
           />
 
+      {employeeUtility.errors.expectedCTC && <p className="error-message">{employeeUtility.errors.expectedCTC}</p>}
+         
           <button onClick={employeeUtility.onSaveEmployee}>Submit</button>
           <br></br>
           <button onClick={employeeUtility.handelShowList}>ShowList</button>
