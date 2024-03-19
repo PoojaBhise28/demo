@@ -83,9 +83,11 @@ export default function PersonalInfoUtility(id: number) {
     try {
       if (personalinfo.id !== 0) {
         await UpdatePersonInfoAsync(personalinfo, personalinfo.id);
+        navigate("/showlist");
         console.log("User data updated successfully.");
       } else {
         await CreatePersonalInfo(personalinfo);
+        navigate("/showlist");
         console.log("New user data created successfully.");
       }
       setPersonalinfo(initialValue);
